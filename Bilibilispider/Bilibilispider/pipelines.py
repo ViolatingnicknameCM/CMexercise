@@ -18,7 +18,7 @@ class BilibiliMysqlPipeline:
             host='localhost',       # 本地MySQL
             port=3306,              # 默认端口
             user='root',            # MySQL默认用户名（一般是root）
-            password='liu3571592486',            # 密码
+            password='',            # 密码
             database='bilibili',    # 创建的数据库
             charset='utf8mb4'       # 支持表情/中文
         )

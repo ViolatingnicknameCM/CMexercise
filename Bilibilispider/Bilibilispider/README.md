@@ -100,7 +100,7 @@ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- 存储时间
 - ②注释掉pipelines后输入`scrapy crawl bilibili -o 评论.csv`会生成csv格式，后续请使用评论词热力图(csv).py
 
 ## 运行结果：
-![B站爬虫运行效果](Bilibilispider/images/bilibili_run.png)
+![B站爬虫运行效果](https://github.com/ViolatingnicknameCM/ViolatingnicknameCMexercise/blob/87691ce4dcc7a4353f6a3e9aed4a7bba4098fc17/Bilibilispider/images/bilibili_run.png)
 
 ## 注意事项
 1.本项目仅用于个人学习和技术研究

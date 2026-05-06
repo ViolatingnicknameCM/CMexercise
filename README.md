@@ -1,2 +1,2 @@
-# ViolatingnicknameCMexercise
+# exercise
 练习

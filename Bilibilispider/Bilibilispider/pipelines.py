@@ -11,21 +11,28 @@ from itemadapter import ItemAdapter
 # pipelines.py
 import pymysql
 
+# 2026-5-18新增：导入 dotenv 和 os 库
+from dotenv import load_dotenv
+import os
+
+# 2026-5-18新增：加载 .env 文件中的环境变量
+load_dotenv()
+
 class BilibiliMysqlPipeline:
     # 爬虫启动时：连接 MySQL
     def open_spider(self, spider):
         self.conn = pymysql.connect(
-            host='localhost',       # 本地MySQL
-            port=3306,              # 默认端口
-            user='root',            # MySQL默认用户名（一般是root）
-            password='',            # 密码
+            host=host='localhost',       # 本地MySQL
+            port=3306,                   # 默认端口
+            user=os.getenv("MYSQL_USER"),            # MySQL用户名
+            password=os.getenv("MYSQL_PASSWORD"),    # 密码
             database='bilibili',    # 创建的数据库
             charset='utf8mb4'       # 支持表情/中文
         )
         # 创建游标（操作数据库）
         self.cursor = self.conn.cursor()
 
-    # 核心：每一条评论都会从这里存入MySQL
+    # 每一条评论都会从这里存入MySQL
     def process_item(self, item, spider):
         # 过滤空评论
         comment = item.get("评论", "").strip()

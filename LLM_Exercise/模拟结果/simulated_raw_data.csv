@@ -1,0 +1,10 @@
+﻿text,image_path,text_length
+重复文本,img1.jpg,30
+重复文本,img1.jpg,30
+<h1>低质量文本<h1>!!!???,blur_img.png,12
+这是一个正常的文本，测试图片为手动编写，并没有源文件，因此最终结果必然为0，对应错误路径图片,valid_img.webp,20
+有害文本赌博色情违规,invalid.txt,28
+,,0
+1234567890，对应正常路径图片,img2.jpg,10
+LLM数据清洗，对应正常路径图片,img3.jpg,20
+高质量文本，对应正常路径图片,img4.jpg,22

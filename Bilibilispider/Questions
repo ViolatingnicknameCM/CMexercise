@@ -1,0 +1,27 @@
+待修复问题
+
+  1. 密码硬编码
+
+  密码出现在两个文件中，考虑删除所有硬编码密码，仅通过 .env 文件或环境变量注入，并将 .env 加入 .gitignore。除此之外，考虑额外增加.env.example文件。
+
+  2. 可能存在的裸 except 吞没异常
+
+  Bilibilispider/spiders/bilibili.py:79：
+  except:
+      return
+  这会吞没所有异常，导致爬虫静默失败、难以调试。
+
+  考虑改为 except (KeyError, TypeError) as e: 明确捕获预期异常并记录日志。
+
+  3. 设计了 config.py 但未实际使用
+
+  config.py 用 pydantic-settings 做了规范的配置管理，但 pipelines.py 仍然硬编码数据库连接参数，完全没有引用 config.py。
+
+  考虑在pipelines.py 内导入 from .config import settings 并使用 settings.db_host、settings.db_password 等。
+
+  4. SQL 
+
+  评论热力图sql.py:33：
+  sql = f"SELECT content FROM comments WHERE bv = '{TARGET_BV}'"
+  当前 TARGET_BV 是硬编码的，考虑替换为参数化查询：
+  df = pd.read_sql("SELECT content FROM comments WHERE bv = %s", engine, params=(TARGET_BV,))

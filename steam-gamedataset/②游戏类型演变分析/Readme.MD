@@ -29,7 +29,7 @@
   - 以 genre_name 为行、release_year 为列、game_count 为颜色深度
   - 直观展示游戏类型的年度分布变化
 
-  - 交互式图表演示,点击路径即可查看(https://github.com/ViolatingnicknameCM/CMexercise/blob/main/steam-gamedataset/png/bubble_animation.html)
+  - 交互式图表演示,点击路径即可查看(https://violatingnicknamecm.github.io/CMexercise/blob/main/steam-gamedataset/png/bubble_animation.html)
   
 
   ## 模块3：动画气泡图

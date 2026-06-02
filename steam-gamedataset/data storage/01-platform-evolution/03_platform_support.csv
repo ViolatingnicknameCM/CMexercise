@@ -1,0 +1,6 @@
+mat_supports_windows,mat_supports_mac,mat_supports_linux,app_count,game_count,avg_price
+True,True,True,142276,88738,8.57
+True,False,False,244,167,7.36
+True,True,False,34,25,9.78
+True,False,True,12,12,6.41
+False,False,False,4,1,5.87

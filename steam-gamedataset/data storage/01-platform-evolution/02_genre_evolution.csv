@@ -1,0 +1,327 @@
+genre_name,release_year,game_count,avg_price,free_count
+Strategy,2006.0,25,8.66,0
+Casual,2006.0,19,5.2,1
+Action,2006.0,18,11.69,0
+Indie,2006.0,10,10.3,1
+Action,2007.0,47,8.28,1
+Strategy,2007.0,23,7.17,0
+Casual,2007.0,10,4.49,1
+Action,2008.0,57,10.36,2
+Casual,2008.0,40,10.33,1
+Strategy,2008.0,34,10.77,1
+Adventure,2008.0,26,12.13,1
+Indie,2008.0,26,8.9,1
+Simulation,2008.0,20,12.88,0
+RPG,2008.0,15,16.05,0
+Racing,2008.0,10,9.66,1
+Action,2009.0,108,11.13,4
+Adventure,2009.0,71,12.33,1
+Strategy,2009.0,66,8.87,1
+Indie,2009.0,62,7.84,5
+Casual,2009.0,58,9.76,2
+Simulation,2009.0,53,9.22,1
+RPG,2009.0,44,11.67,1
+Racing,2009.0,10,9.1,0
+Action,2010.0,83,9.94,5
+Casual,2010.0,71,6.7,0
+Indie,2010.0,66,7.36,4
+Strategy,2010.0,62,10.08,2
+Adventure,2010.0,49,9.29,2
+RPG,2010.0,33,10.81,2
+Simulation,2010.0,27,9.63,1
+Action,2011.0,111,9.95,9
+Indie,2011.0,104,7.78,5
+Strategy,2011.0,80,8.93,2
+Adventure,2011.0,63,9.86,5
+Casual,2011.0,46,6.56,3
+RPG,2011.0,40,10.08,6
+Simulation,2011.0,27,9.66,1
+Free To Play,2011.0,11,,11
+Racing,2011.0,10,8.88,0
+Massively Multiplayer,2011.0,10,2.99,9
+Indie,2012.0,166,8.33,7
+Action,2012.0,165,10.22,13
+Adventure,2012.0,107,9.33,7
+Strategy,2012.0,76,10.57,5
+RPG,2012.0,62,11.01,13
+Casual,2012.0,55,7.52,4
+Simulation,2012.0,37,11.5,2
+Free To Play,2012.0,19,,17
+Massively Multiplayer,2012.0,14,,13
+Racing,2012.0,11,9.26,0
+Indie,2013.0,258,8.97,9
+Action,2013.0,228,11.92,16
+Adventure,2013.0,170,11.01,7
+Strategy,2013.0,115,10.62,4
+RPG,2013.0,87,10.27,13
+Casual,2013.0,86,7.51,1
+Simulation,2013.0,76,11.69,7
+Free To Play,2013.0,24,,23
+Racing,2013.0,19,12.88,1
+Massively Multiplayer,2013.0,15,3.96,12
+Sports,2013.0,14,12.74,1
+Indie,2014.0,871,8.18,72
+Action,2014.0,626,606.39,46
+Adventure,2014.0,576,622.07,25
+Casual,2014.0,412,7.2,32
+Strategy,2014.0,335,10.93,24
+RPG,2014.0,271,10.47,19
+Simulation,2014.0,229,11.86,12
+Free To Play,2014.0,64,29.99,59
+Racing,2014.0,58,7.91,3
+Sports,2014.0,48,7.86,3
+Early Access,2014.0,43,11.01,6
+Massively Multiplayer,2014.0,21,13.16,14
+Utilities,2014.0,19,30.92,4
+Design & Illustration,2014.0,14,28.9,2
+Indie,2015.0,1828,954.65,146
+Action,2015.0,1084,1678.9,91
+Adventure,2015.0,978,381.17,62
+Casual,2015.0,753,1069.59,66
+Strategy,2015.0,559,1261.44,43
+RPG,2015.0,481,1197.35,37
+Simulation,2015.0,439,1728.11,30
+Free To Play,2015.0,145,8.99,130
+Early Access,2015.0,134,1617.53,12
+Sports,2015.0,93,1789.99,5
+Racing,2015.0,84,1245.05,6
+Massively Multiplayer,2015.0,49,12.91,29
+Utilities,2015.0,27,32.47,5
+Software Training,2015.0,26,15.6,2
+Design & Illustration,2015.0,20,17.54,5
+Education,2015.0,14,15.6,2
+Animation & Modeling,2015.0,14,31.55,4
+Indie,2016.0,2918,287.65,296
+Action,2016.0,1802,412.49,154
+Casual,2016.0,1560,6.72,170
+Adventure,2016.0,1522,497.15,153
+Simulation,2016.0,791,639.88,93
+Strategy,2016.0,749,585.05,78
+RPG,2016.0,581,1105.75,74
+Early Access,2016.0,344,9.95,51
+Free To Play,2016.0,272,4.49,254
+Sports,2016.0,224,887.32,24
+Racing,2016.0,137,86.71,12
+Massively Multiplayer,2016.0,90,9.16,41
+Utilities,2016.0,56,14.12,16
+Violent,2016.0,49,12.17,7
+Design & Illustration,2016.0,43,26.6,7
+Education,2016.0,32,14.3,8
+Gore,2016.0,31,14.3,4
+Animation & Modeling,2016.0,29,34.31,5
+Audio Production,2016.0,19,20.32,1
+Video Production,2016.0,18,47.9,3
+Software Training,2016.0,16,11.52,4
+Nudity,2016.0,11,6.61,1
+Photo Editing,2016.0,10,17.99,0
+Indie,2017.0,4223,67.86,457
+Action,2017.0,2618,125.28,288
+Casual,2017.0,2372,6.47,252
+Adventure,2017.0,2270,31.35,216
+Simulation,2017.0,1123,10.53,143
+Strategy,2017.0,1089,9.78,128
+RPG,2017.0,831,17.86,121
+Early Access,2017.0,539,9.83,89
+Free To Play,2017.0,401,4.24,374
+Sports,2017.0,320,10.16,32
+Violent,2017.0,220,6.11,11
+Racing,2017.0,209,11.33,19
+Massively Multiplayer,2017.0,150,27.31,71
+Gore,2017.0,133,5.95,6
+Utilities,2017.0,81,21.34,25
+Design & Illustration,2017.0,68,32.42,24
+Education,2017.0,57,18.98,15
+Nudity,2017.0,51,5.95,2
+Animation & Modeling,2017.0,47,23.04,21
+Video Production,2017.0,44,17.52,12
+Sexual Content,2017.0,42,5.86,2
+Audio Production,2017.0,25,33.96,3
+Software Training,2017.0,18,18.26,3
+Photo Editing,2017.0,18,22.49,2
+Web Publishing,2017.0,11,23.32,2
+Indie,2018.0,5735,122.58,689
+Casual,2018.0,3348,45.68,378
+Action,2018.0,3140,539.11,383
+Adventure,2018.0,2775,498.81,288
+Simulation,2018.0,1494,12.42,186
+Strategy,2018.0,1350,239.93,176
+RPG,2018.0,1167,261.32,142
+Early Access,2018.0,681,12.29,102
+Free To Play,2018.0,556,1.89,513
+Sports,2018.0,397,15.33,43
+Racing,2018.0,274,18.18,25
+Massively Multiplayer,2018.0,189,1825.3,82
+Violent,2018.0,145,8.44,22
+Gore,2018.0,92,9.37,15
+Utilities,2018.0,84,9.63,23
+Design & Illustration,2018.0,46,25.96,5
+Animation & Modeling,2018.0,42,19.13,9
+Education,2018.0,40,15.39,18
+Sexual Content,2018.0,38,7.3,5
+Nudity,2018.0,32,5.67,4
+Video Production,2018.0,32,29.92,13
+Audio Production,2018.0,21,24.51,4
+Software Training,2018.0,16,12.13,7
+Game Development,2018.0,15,32.27,2
+Photo Editing,2018.0,10,14.69,1
+Indie,2019.0,5519,7.42,744
+Casual,2019.0,3073,6.13,380
+Action,2019.0,3021,189.95,410
+Adventure,2019.0,2893,192.4,337
+Simulation,2019.0,1419,9.93,165
+Strategy,2019.0,1363,9.28,165
+RPG,2019.0,1326,9.85,176
+Early Access,2019.0,701,12.26,115
+Free To Play,2019.0,610,6.12,582
+Sports,2019.0,341,8.18,39
+Racing,2019.0,266,8.71,27
+Massively Multiplayer,2019.0,179,14.73,76
+Utilities,2019.0,105,11.6,26
+Design & Illustration,2019.0,47,13.18,7
+Education,2019.0,47,27.65,18
+Animation & Modeling,2019.0,38,14.42,8
+Game Development,2019.0,31,19.92,8
+Software Training,2019.0,22,23.84,4
+Audio Production,2019.0,19,25.32,4
+Video Production,2019.0,18,16.84,5
+Web Publishing,2019.0,13,19.86,1
+Photo Editing,2019.0,10,18.74,2
+Indie,2020.0,6535,7.42,981
+Casual,2020.0,3874,82.89,585
+Action,2020.0,3703,517.62,571
+Adventure,2020.0,3487,332.82,493
+Simulation,2020.0,1816,11.69,229
+Strategy,2020.0,1685,175.48,232
+RPG,2020.0,1528,10.53,240
+Free To Play,2020.0,837,17.66,828
+Early Access,2020.0,791,10.76,142
+Sports,2020.0,431,700.61,63
+Racing,2020.0,300,993.79,46
+Massively Multiplayer,2020.0,217,9.88,92
+Utilities,2020.0,86,13.13,23
+Design & Illustration,2020.0,54,23.8,12
+Education,2020.0,45,18.34,18
+Animation & Modeling,2020.0,43,23.01,13
+Game Development,2020.0,31,14.22,7
+Video Production,2020.0,27,37.04,7
+Audio Production,2020.0,21,28.3,5
+Software Training,2020.0,18,23.73,5
+Web Publishing,2020.0,13,22.98,4
+Photo Editing,2020.0,12,18.84,5
+Indie,2021.0,7348,7.75,1018
+Casual,2021.0,4790,6.94,622
+Adventure,2021.0,4279,9.9,612
+Action,2021.0,4175,117.58,651
+Simulation,2021.0,2053,13.37,254
+Strategy,2021.0,1909,9.79,273
+RPG,2021.0,1888,11.24,313
+Early Access,2021.0,981,10.52,170
+Free To Play,2021.0,924,9.66,918
+Sports,2021.0,407,22.09,54
+Racing,2021.0,371,19.7,51
+Massively Multiplayer,2021.0,221,11.57,112
+Utilities,2021.0,102,15.18,21
+Design & Illustration,2021.0,50,19.52,8
+Education,2021.0,41,28.45,12
+Game Development,2021.0,40,19.35,8
+Animation & Modeling,2021.0,37,26.88,10
+Video Production,2021.0,34,31.88,6
+Audio Production,2021.0,22,25.94,4
+Photo Editing,2021.0,18,17.43,2
+Software Training,2021.0,17,31.3,4
+Web Publishing,2021.0,13,30.39,3
+Indie,2022.0,7819,43.82,1260
+Casual,2022.0,5106,49.88,790
+Adventure,2022.0,4662,69.28,683
+Action,2022.0,4585,72.25,804
+Simulation,2022.0,2327,100.22,290
+Strategy,2022.0,2183,13.54,364
+RPG,2022.0,2133,139.88,326
+Free To Play,2022.0,1182,5.24,1173
+Early Access,2022.0,1155,10.78,195
+Sports,2022.0,489,14.08,64
+Racing,2022.0,429,12.3,73
+Massively Multiplayer,2022.0,262,13.54,131
+Utilities,2022.0,84,19.72,29
+Animation & Modeling,2022.0,46,55.05,15
+Education,2022.0,45,19.37,20
+Design & Illustration,2022.0,45,31.56,18
+Game Development,2022.0,37,27.02,15
+Video Production,2022.0,35,71.05,10
+Software Training,2022.0,22,36.65,9
+Audio Production,2022.0,18,30.2,6
+Photo Editing,2022.0,15,22.91,2
+Web Publishing,2022.0,10,28.24,6
+Indie,2023.0,9025,26.29,1394
+Casual,2023.0,6022,34.79,909
+Action,2023.0,5533,250.41,913
+Adventure,2023.0,5517,46.89,833
+Simulation,2023.0,2895,46.68,377
+RPG,2023.0,2640,381.46,429
+Strategy,2023.0,2627,13.33,416
+Early Access,2023.0,1378,10.13,232
+Free To Play,2023.0,1258,7.88,1241
+Sports,2023.0,580,275.34,65
+Racing,2023.0,516,134.4,63
+Massively Multiplayer,2023.0,308,13.0,166
+Utilities,2023.0,99,13.88,26
+Design & Illustration,2023.0,70,20.76,13
+Animation & Modeling,2023.0,56,28.37,16
+Game Development,2023.0,53,24.04,18
+Video Production,2023.0,39,35.03,15
+Education,2023.0,38,19.48,14
+Photo Editing,2023.0,27,24.44,7
+Software Training,2023.0,16,27.52,5
+Audio Production,2023.0,15,28.24,3
+Indie,2024.0,12768,114.86,2038
+Casual,2024.0,8383,45.7,1483
+Adventure,2024.0,7268,122.87,1114
+Action,2024.0,7069,280.48,1182
+Simulation,2024.0,4028,402.69,660
+Strategy,2024.0,3639,193.95,628
+RPG,2024.0,3613,264.17,570
+Free To Play,2024.0,2750,5.77,2714
+Early Access,2024.0,1953,149.09,281
+Sports,2024.0,687,568.15,107
+Racing,2024.0,652,918.31,95
+Massively Multiplayer,2024.0,395,1806.71,221
+Utilities,2024.0,129,15.19,35
+Design & Illustration,2024.0,60,19.71,10
+Animation & Modeling,2024.0,50,24.39,11
+Game Development,2024.0,42,15.1,14
+Video Production,2024.0,41,38.89,12
+Education,2024.0,34,18.73,11
+Audio Production,2024.0,28,25.21,5
+Photo Editing,2024.0,26,25.83,3
+Software Training,2024.0,18,19.77,4
+Web Publishing,2024.0,10,25.24,6
+Indie,2025.0,10877,95.64,1364
+Casual,2025.0,7130,104.52,987
+Adventure,2025.0,6046,166.89,752
+Action,2025.0,5741,148.88,802
+Simulation,2025.0,3726,98.6,405
+Strategy,2025.0,3272,111.92,442
+RPG,2025.0,3070,211.42,446
+Free To Play,2025.0,2110,10.88,2088
+Early Access,2025.0,1905,11.8,236
+Sports,2025.0,590,13.55,61
+Racing,2025.0,532,10.19,71
+Massively Multiplayer,2025.0,297,9.22,168
+Utilities,2025.0,144,8.09,42
+Design & Illustration,2025.0,50,17.22,8
+Animation & Modeling,2025.0,42,19.99,11
+Education,2025.0,41,22.76,10
+Game Development,2025.0,40,28.01,15
+Video Production,2025.0,27,24.84,6
+Audio Production,2025.0,18,13.28,5
+Software Training,2025.0,17,17.73,4
+Photo Editing,2025.0,15,14.32,2
+Indie,2026.0,104,,13
+Adventure,2026.0,79,59.99,8
+Action,2026.0,67,59.99,8
+RPG,2026.0,62,,8
+Casual,2026.0,45,,9
+Strategy,2026.0,35,,3
+Simulation,2026.0,32,,2
+Early Access,2026.0,20,,4
+Free To Play,2026.0,13,,13

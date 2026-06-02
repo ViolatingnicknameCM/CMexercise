@@ -1,0 +1,73 @@
+1. 01_temporal_growth.csv — Steam 平台年度增长数据
+
+release_year   │ 发行年份 (1997–2025)
+
+apps_released  │ 年度发布应用总数
+
+games_released │ 年度发布游戏数
+
+dlc_released   │ 年度发布 DLC 数
+
+free_apps      │ 免费应用数
+
+avg_price_usd  │ 平均价格 (USD)
+
+从1997年仅年发行2款应用，到2024年峰值的年发行33780款应用。DLC从2008年开始出现，免费应用占比持续上升。
+
+
+02_genre_evolution.csv — 游戏类型演变数据
+
+genre_name   │ 类型名称 (Indie, Action, Casual, RPG 等)
+
+release_year │ 发行年份 (2006–2026)
+
+game_count   │ 该类型当年发行游戏数量
+
+avg_price    │ 该类型当年平均价格
+
+free_count   │ 该类型当年免费游戏数
+
+Indie类型发行数从2006年的10款增长到2024年的12768款，成为Steam上最大的类别。Casual、Action、Adventure紧随其后。
+
+
+03_platform_support.csv — 平台支持分布
+
+mat_supports_windows/mac/linux │ 是否支持各平台
+
+app_count      │ 应用数量
+
+game_count     │ 游戏数量
+
+avg_price      │ 平均价格
+
+绝大多数应用(共142276款)同时支持Windows/Mac/Linux三平台。仅244款为Windows独占。跨平台为主流。
+
+04_pricing_strategy.csv — 定价策略分布
+
+price_range          │ 价格区间
+app_count            │ 应用数量
+avg_discount_percent │ 平均折扣百分比
+has_achievements     │ 有成就系统的应用数
+
+免费应用达18994款，$0.01-$4.99区间有46731款，低价策略主导市场。成就系统在付费游戏中渗透率约50-65%，大部分付费游戏都具有相应的成就系统。
+
+05_publisher_portfolios.csv — 前100发行商组合
+
+publisher_name   │ 发行商名称
+total_apps       │ 总应用数
+game_count       │ 游戏数量
+dlc_count        │ DLC 数量
+avg_price        │ 平均价格
+avg_achievements │ 平均成就数
+
+KOMODO以2375款应用居首（主要是 DLC）。Dovetail Games - TSW 平均价格最高。EA、Ubisoft、SEGA 等大厂游戏数量多且均价高。
+
+06_achievement_evolution.csv — 成就系统演变
+
+release_year              │ 发行年份 (1997–2025)
+total_games               │ 总游戏数
+games_with_achievements   │ 有成就的游戏数
+pct_with_achievements     │ 有成就的游戏占比
+avg_achievements_per_game │ 每款游戏平均成就数
+
+成就采用率在2012年达到顶峰，约为68.13%，之后稳定在45-55%之间。平均每款游戏约24-100个成就，2017-2018年游戏平均成就数最高，超过100。

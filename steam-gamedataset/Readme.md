@@ -1,6 +1,7 @@
 # 文件结构
+
 steam-gamedataset/
-├── data storage/01-platform-evolution/  - from VintageDon - GitHub 
+├── data storage/01-platform-evolution/  # from VintageDon - GitHub 
 │ ├── 01_temporal_growth.csv
 │ ├── 02_genre_evolution.csv
 │ ├── 03_platform_support.csv
@@ -8,24 +9,24 @@ steam-gamedataset/
 │ ├── 05_publisher_portfolios.csv
 │ ├── 06_achievement_evolution.csv
 │ ├── 初步分析.txt       
-│ └── 工作簿 1.twb       tableau工作薄，对应①steam28年增长曲线
+│ └── 工作簿 1.twb       #tableau工作薄，对应①steam28年增长曲线
 │ 
-├── png/                保存了所有需要在github内引用的图片等
-│ ├── bubble_animation.html           ②游戏类型演变分析中的气泡图
-│ ├── steam_growth.png                ①steam28年增长曲线中的折线图
-│ └── steam_heatmap_interactive.html  ②游戏类型演变分析中的热力图
+├── png/                              #保存了所有需要在github内引用的图片等
+│ ├── bubble_animation.html           #②游戏类型演变分析中的气泡图
+│ ├── steam_growth.png                #①steam28年增长曲线中的折线图
+│ └── steam_heatmap_interactive.html  #②游戏类型演变分析中的热力图
 │ 
-├── ①steam28 年增长曲线 /              steam28年增长曲线的juypter主代码
+├── ①steam28 年增长曲线 /              #steam28年增长曲线的juypter主代码
 │ ├──Readme.MD
 │ └──Steam游戏数量增长曲线可视化.ipynb
 │ 
-├── ②游戏类型演变分析 /                游戏类型演变分析的juypter主代码
+├── ②游戏类型演变分析 /                #游戏类型演变分析的juypter主代码
 │ ├──Readme.MD
 │ └──Steam游戏类型演变分析.ipynb
 │ 
 ├── Readme.txt                        
 │ 
-└── 获取 steam 数据.py                 VintageDon 仓库的获取代码
+└── 获取 steam 数据.py                 #VintageDon 仓库的获取代码
 
 ## 具体内容
 

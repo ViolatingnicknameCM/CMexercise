@@ -41,7 +41,7 @@ Greenlight是一款“征集社区帮助,挑选新游戏在Steam上发布的系�
 从Valve内部游戏平台转向游戏商店，再转向社区，每一步都拓展了业务边界，同时对开发者持续降低发行门槛，提供收入分成、营销工具等支持
 
 ## 运行结果：
-![运行效果](github对应网址)
+![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/steam-gamedataset/png/steam_growth.png)
 
   # 数据来源
 

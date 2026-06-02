@@ -29,14 +29,14 @@
   - 以 genre_name 为行、release_year 为列、game_count 为颜色深度
   - 直观展示游戏类型的年度分布变化
 
-  - 交互式图表演示,点击路径即可查看(https://violatingnicknamecm.github.io/CMexercise/blob/main/steam-gamedataset/png/bubble_animation.html)
+  - 交互式图表演示,点击路径即可查看(https://violatingnicknamecm.github.io/CMexercise/steam-gamedataset/png/steam_heatmap_interactive.html)
   
 
   ## 模块3：动画气泡图
 
   - 以气泡位置/大小展示各类型每年游戏数量的动态变化
 
-  - 气泡度演示
+  - 气泡图演示，点击路径即可查看(https://violatingnicknamecm.github.io/CMexercise/steam-gamedataset/png/bubble_animation.html)
 
   ## 模块4：对独立游戏的一些分析
 

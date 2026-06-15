@@ -39,12 +39,19 @@ sql = f"SELECT content FROM comments WHERE bv = '{TARGET_BV}'"
 df = pd.read_sql(sql, engine)  # 直接读SQL结果→DataFrame,将conn改为engine
 # conn.close()  关闭连接，不必要的
 
-# 2. 把所有评论合并成一段文本
-text = " ".join(df["content"].astype(str))
-
 # 3. 用jieba把句子切成词语
 words = jieba.lcut(text)
+stopwords = {"的", "了", "在", "是", "我", "有", "和", "就", "不", "人", "都", "一",
+             "一个", "上", "也", "很", "到", "说", "要", "去", "你", "会", "着",
+             "没有", "看", "好", "自己", "这", "他", "她", "它", "们", "那", "些",
+             "什么", "怎么", "如何", "为什么", "因为", "所以", "但是", "可以",
+             "这个", "那个", "还是", "只是", "已经", "还有", "觉得", "真的",
+             "有点", "太", "吧", "吗", "呢", "啊", "哦", "嗯", "哈", "哇"}
 word_text = " ".join(words)
+
+# 过滤停用词 + 只保留长度≥2的词
+filtered_words = [w for w in words if w not in stopwords and len(w.strip()) >= 2]
+word_text = " ".join(filtered_words)
 
 # 4. 生成词云热力图
 wc = WordCloud(

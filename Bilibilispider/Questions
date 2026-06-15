@@ -1,6 +1,6 @@
 待修复问题
 
-  1. 密码硬编码
+  1. 密码硬编码 √
 
   密码出现在两个文件中，考虑删除所有硬编码密码，仅通过 .env 文件或环境变量注入，并将 .env 加入 .gitignore。除此之外，考虑额外增加.env.example文件。
 
@@ -25,3 +25,12 @@
   sql = f"SELECT content FROM comments WHERE bv = '{TARGET_BV}'"
   当前 TARGET_BV 是硬编码的，考虑替换为参数化查询：
   df = pd.read_sql("SELECT content FROM comments WHERE bv = %s", engine, params=(TARGET_BV,))
+
+2026-6
+5. 词云不好看
+
+考虑借助 jieba.posseg 只保留名词、动词、形容词等实词，例如过滤掉助词（uj）、连词（c）、介词（p）等。比硬编码停用词更科学
+
+如果领域词汇被切开（如UP主名字），可添加自定义词典确保正确分词。
+
+考虑使用遮罩图片、调整颜色，让视觉效果更好。

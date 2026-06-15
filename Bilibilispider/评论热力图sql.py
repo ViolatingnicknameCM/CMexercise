@@ -8,6 +8,11 @@ from sqlalchemy import create_engine #消除pandas警告
 
 #注：以后用 pandas 读数据库时，直接用 SQLAlchemy 引擎连接
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 # 1. B站视频BV号
 TARGET_BV = "BV1TC1jYmEve"
 # 2. MySQL密码

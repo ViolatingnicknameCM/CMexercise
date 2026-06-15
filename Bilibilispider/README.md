@@ -43,9 +43,11 @@
 
 #### pipelines.py
 - 由于在学习爬虫的同时进行了SQL学习，所以修改了管道让其把数据输入至本机的MySQL中，如果不想存到MySQL中而是存为csv之类的格式请去cmd终端内输入`"scrapy crawl bilibili -o 评论.csv"`这样的Scrapy内置导出指令，JSON/XML都可以通过这种方式导出。
-- 相应的，这条命令会同时运行pipelines，如果不想将数据插入SQL请去pipelines自行注释掉（短期）或者进入cmd终端中切换到爬虫所在目录后先配置环境，即输入`pip install scrapy scrapy-playwright`和`playwright install chromium`后，再输入`"自己的python环境" -m scrapy crawl bilibili -o comments.csv --set FEED_EXPORT_ENCODING=utf-8 --set ITEM_PIPELINES={}`运行爬虫。
+- 相应的，这条命令会同时运行pipelines，如果不想将数据插入SQL应去pipelines自行注释掉（短期）或者进入cmd终端中切换到爬虫所在目录后先配置环境，即输入`pip install scrapy scrapy-playwright`和`playwright install chromium`后，再输入`"自己的python环境" -m scrapy crawl bilibili -o comments.csv --set FEED_EXPORT_ENCODING=utf-8 --set ITEM_PIPELINES={}`运行爬虫。
 
-除此之外，如果希望爬虫在运行时可以正确存到MySQL中，请先打开SQL终端输入如下指令：
+![SQL效果](https://github.com/ViolatingnicknameCM/ViolatingnicknameCMexercise/blob/87691ce4dcc7a4353f6a3e9aed4a7bba4098fc17/Bilibilispider/images/MySQL.png)
+
+除此之外，如果希望爬虫在运行时可以正确存到MySQL中，请在SQL终端内输入如下指令：
 ##### SQL指令
 -- 创建数据库
 - `CREATE DATABASE IF NOT EXISTS bilibili DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`

@@ -104,6 +104,8 @@ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- 存储时间
 ## 运行结果：
 ![B站爬虫运行效果](https://github.com/ViolatingnicknameCM/ViolatingnicknameCMexercise/blob/87691ce4dcc7a4353f6a3e9aed4a7bba4098fc17/Bilibilispider/images/bilibili_run.png)
 
+![词云运行效果](https://github.com/ViolatingnicknameCM/ViolatingnicknameCMexercise/blob/87691ce4dcc7a4353f6a3e9aed4a7bba4098fc17/Bilibilispider/images/WordCloud.png)
+
 ## 注意事项
 1.本项目仅用于个人学习和技术研究
 2.严格遵守 B 站 robots.txt 协议及用户协议

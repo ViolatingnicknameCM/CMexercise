@@ -11,7 +11,7 @@ from sqlalchemy import create_engine #消除pandas警告
 # 1. B站视频BV号
 TARGET_BV = "BV1TC1jYmEve"
 # 2. MySQL密码
-MYSQL_PASSWORD = "liu3571592486"
+MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
 
 # 1. 从 MySQL 读取指定BV号的评论数据
 # 连接数据库

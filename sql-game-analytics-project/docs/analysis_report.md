@@ -1,8 +1,8 @@
-\# 游戏用户留存下降归因分析
+# 游戏用户留存下降归因分析
 
 
 
-\## 项目背景
+## 项目背景
 
 
 
@@ -14,7 +14,7 @@
 
 
 
-\## 分析框架：OSM × AARRR
+## 分析框架：OSM × AARRR
 
 | OSM 层次 | 内容 |
 
@@ -30,54 +30,54 @@
 
 映射到 AARRR 海盗模型：
 
-\- 获取：各渠道新增用户量及占比
+- 获取：各渠道新增用户量及占比
 
-\- 激活：注册当天登录率、新手引导完成率
+- 激活：注册当天登录率、新手引导完成率
 
-\- 留存：次日/3日/7日留存率
+- 留存：次日/3日/7日留存率
 
-\- 变现：（模拟数据暂缺）用深度活跃（>10分钟在线）作为代理指标
+- 变现：（模拟数据暂缺）用深度活跃（>10分钟在线）作为代理指标
 
 
 
-\## 模拟数据生成
+## 模拟数据生成
 
 
 
 为还原真实业务规律，全部通过 MySQL 的 `RAND()` 和 `CASE WHEN` 生成 5000+ 条用户数据，并在数据中预设了以下情况：
 
-\- 渠道偏差：抖音渠道用户次日留存率故意设为仅 20%（其他渠道 45%）
+- 渠道偏差：抖音渠道用户次日留存率故意设为仅 20%（其他渠道 45%）
 
-\- 漏斗断崖：新手引导第3步完成率仅 40%，且生成逻辑非串行依赖
-
-
-
-\## 诊断分析过程
-
-\### 锚定异常时间点
-
-用 `LEFT JOIN` 和 `DATE\_ADD` 计算每日次日留存率。
+- 漏斗断崖：新手引导第3步完成率仅 40%，且生成逻辑非串行依赖
 
 
 
-\-- 每日留存率趋势查询
+## 诊断分析过程
+
+### 锚定异常时间点
+
+用 `LEFT JOIN` 和 `DATE_ADD` 计算每日次日留存率。
+
+
+
+-- 每日留存率趋势查询
 
 ```sql
-SELECT u.first\_login\_date,
+SELECT u.first_login_date,
 
-      COUNT(DISTINCT u.user\_id) AS new\_users,
+      COUNT(DISTINCT u.user_id) AS new_users,
 
-      COUNT(DISTINCT l.user\_id) AS d1\_users,
+      COUNT(DISTINCT l.user_id) AS d1_users,
 
-      ROUND(COUNT(DISTINCT l.user\_id)/COUNT(DISTINCT u.user\_id), 2) AS d1\_rate
+      ROUND(COUNT(DISTINCT l.user_id)/COUNT(DISTINCT u.user_id), 2) AS d1_rate
 
 FROM users u
 
-LEFT JOIN login\_logs l ON u.user\_id = l.user\_id 
+LEFT JOIN login_logs l ON u.user_id = l.user_id 
 
-   AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
+   AND l.login_date = DATE_ADD(u.first_login_date, INTERVAL 1 DAY)
 
-GROUP BY u.first\_login\_date;
+GROUP BY u.first_login_date;
 ```
 ![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/1.png)
 
@@ -85,28 +85,28 @@ GROUP BY u.first\_login\_date;
 
 
 
-\### 按渠道拆解新增
+### 按渠道拆解新增
 
 ```sql
 SELECT channel,
 
-      COUNT(DISTINCT user\_id) AS new\_users,
+      COUNT(DISTINCT user_id) AS new_users,
 
-      ROUND(SUM(CASE WHEN is\_d1=1 THEN 1 ELSE 0 END) / COUNT(\*), 2) AS d1\_rate
+      ROUND(SUM(CASE WHEN is_d1=1 THEN 1 ELSE 0 END) / COUNT(*), 2) AS d1_rate
 
 FROM (
 
-   SELECT u.user\_id, u.channel,
+   SELECT u.user_id, u.channel,
 
-          MAX(CASE WHEN l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY) THEN 1 ELSE 0 END) AS is\_d1
+          MAX(CASE WHEN l.login_date = DATE_ADD(u.first_login_date, INTERVAL 1 DAY) THEN 1 ELSE 0 END) AS is_d1
 
    FROM users u
 
-   LEFT JOIN login\_logs l ON u.user\_id = l.user\_id
+   LEFT JOIN login_logs l ON u.user_id = l.user_id
 
-   WHERE u.first\_login\_date = '2025-06-28'
+   WHERE u.first_login_date = '2025-06-28'
 
-   GROUP BY u.user\_id, u.channel
+   GROUP BY u.user_id, u.channel
 
 ) t
 
@@ -118,16 +118,16 @@ GROUP BY channel;
 发现6月28日应用商店留存率仅34%;抖音留存率稳定在20%周围，为17%
 
 
-\### 对新手引导步骤进行漏斗计算
+### 对新手引导步骤进行漏斗计算
 
 ```sql
-SELECT step\_id, COUNT(DISTINCT user\_id) AS users
+SELECT step_id, COUNT(DISTINCT user_id) AS users
 
-FROM tutorial\_progress
+FROM tutorial_progress
 
-WHERE user\_id IN (SELECT user\_id FROM users WHERE first\_login\_date='2025-06-28')
+WHERE user_id IN (SELECT user_id FROM users WHERE first_login_date='2025-06-28')
 
-GROUP BY step\_id;
+GROUP BY step_id;
 ```
 
 ![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/3.png)
@@ -138,31 +138,31 @@ GROUP BY step\_id;
 ```sql
 SELECT 
 
-   s.step\_id,
+   s.step_id,
 
-   COUNT(DISTINCT t.user\_id) AS completed\_users,
+   COUNT(DISTINCT t.user_id) AS completed_users,
 
-   ROUND(COUNT(DISTINCT t.user\_id) / 
+   ROUND(COUNT(DISTINCT t.user_id) / 
 
-         (SELECT COUNT(\*) FROM users WHERE first\_login\_date = '2025-06-28'), 2) AS completion\_rate
+         (SELECT COUNT(*) FROM users WHERE first_login_date = '2025-06-28'), 2) AS completion_rate
 
 FROM (
 
-   SELECT 1 AS step\_id UNION SELECT 2 UNION SELECT 3 
+   SELECT 1 AS step_id UNION SELECT 2 UNION SELECT 3 
 
    UNION SELECT 4 UNION SELECT 5
 
 ) s
 
-LEFT JOIN tutorial\_progress t 
+LEFT JOIN tutorial_progress t 
 
-&#x20;   ON s.step\_id = t.step\_id 
+&#x20;   ON s.step_id = t.step_id 
 
-&#x20;   AND t.user\_id IN (SELECT user\_id FROM users WHERE first\_login\_date = '2025-06-28')
+&#x20;   AND t.user_id IN (SELECT user_id FROM users WHERE first_login_date = '2025-06-28')
 
-GROUP BY s.step\_id
+GROUP BY s.step_id
 
-ORDER BY s.step\_id;
+ORDER BY s.step_id;
 ```
 
 ![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/4.png)
@@ -181,7 +181,7 @@ ORDER BY s.step\_id;
 
 
 
-\### 首日行为深度验证
+### 首日行为深度验证
 
 
 ```sql
@@ -189,23 +189,23 @@ SELECT u.channel,
 
       CASE 
 
-          WHEN l.session\_duration < 60 THEN '秒退(<3min)'
+          WHEN l.session_duration < 60 THEN '秒退(<3min)'
 
-          WHEN l.session\_duration BETWEEN 60 AND 300 THEN '浅玩(3-30min)'
+          WHEN l.session_duration BETWEEN 60 AND 300 THEN '浅玩(3-30min)'
 
           ELSE '深度(>30min)'
 
-      END AS play\_group,
+      END AS play_group,
 
-      COUNT(\*) AS cnt
+      COUNT(*) AS cnt
 
 FROM users u
 
-JOIN login\_logs l ON u.user\_id = l.user\_id AND l.login\_date = u.first\_login\_date
+JOIN login_logs l ON u.user_id = l.user_id AND l.login_date = u.first_login_date
 
-WHERE u.first\_login\_date = '2025-06-28'
+WHERE u.first_login_date = '2025-06-28'
 
-GROUP BY u.channel, play\_group;
+GROUP BY u.channel, play_group;
 ```
 
 ![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/5.png)
@@ -214,7 +214,7 @@ GROUP BY u.channel, play\_group;
 
 
 
-\## AB实验设计
+## AB实验设计
 
 
 
@@ -242,25 +242,25 @@ GROUP BY u.channel, play\_group;
 
 通过
 ```sql
-SELECT e.exp\_group,
+SELECT e.exp_group,
 
-      COUNT(DISTINCT u.user\_id) AS users,
+      COUNT(DISTINCT u.user_id) AS users,
 
-      COUNT(DISTINCT l.user\_id) AS d1\_users,
+      COUNT(DISTINCT l.user_id) AS d1_users,
 
-      ROUND(COUNT(DISTINCT l.user\_id)/COUNT(DISTINCT u.user\_id), 2) AS d1\_rate
+      ROUND(COUNT(DISTINCT l.user_id)/COUNT(DISTINCT u.user_id), 2) AS d1_rate
 
-FROM exp\_assignment e
+FROM exp_assignment e
 
-JOIN users u ON e.user\_id = u.user\_id
+JOIN users u ON e.user_id = u.user_id
 
-LEFT JOIN login\_logs l ON u.user\_id = l.user\_id
+LEFT JOIN login_logs l ON u.user_id = l.user_id
 
-&#x20;   AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
+&#x20;   AND l.login_date = DATE_ADD(u.first_login_date, INTERVAL 1 DAY)
 
-WHERE u.first\_login\_date BETWEEN '2025-06-15' AND '2025-06-21'
+WHERE u.first_login_date BETWEEN '2025-06-15' AND '2025-06-21'
 
-GROUP BY e.exp\_group;
+GROUP BY e.exp_group;
 ```
 
 ![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/6.png)
@@ -271,62 +271,62 @@ GROUP BY e.exp\_group;
 
 
 
-\-- 补充 B组 次日留存
+-- 补充 B组 次日留存
 
 ```sql
-INSERT INTO login\_logs (user\_id, login\_date, session\_duration)
+INSERT INTO login_logs (user_id, login_date, session_duration)
 
 SELECT 
 
-   u.user\_id,
+   u.user_id,
 
-   DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY),
+   DATE_ADD(u.first_login_date, INTERVAL 1 DAY),
 
-   FLOOR(200 + RAND(u.user\_id \* 31) \* 800)
+   FLOOR(200 + RAND(u.user_id * 31) * 800)
 
 FROM users u
 
-JOIN exp\_assignment e ON u.user\_id = e.user\_id
+JOIN exp_assignment e ON u.user_id = e.user_id
 
-WHERE e.exp\_group = 'B'
+WHERE e.exp_group = 'B'
 
- AND u.first\_login\_date BETWEEN '2025-06-15' AND '2025-06-21'
+ AND u.first_login_date BETWEEN '2025-06-15' AND '2025-06-21'
 
  AND NOT EXISTS (
 
-     SELECT 1 FROM login\_logs l
+     SELECT 1 FROM login_logs l
 
-     WHERE l.user\_id = u.user\_id 
+     WHERE l.user_id = u.user_id 
 
-       AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
+       AND l.login_date = DATE_ADD(u.first_login_date, INTERVAL 1 DAY)
 
  )
 
- AND RAND(u.user\_id \* 31) < 0.12;  按概率补充
+ AND RAND(u.user_id * 31) < 0.12;  按概率补充
 ```
 
-\-- 评估结果
+-- 评估结果
 
 ```sql
-SELECT e.exp\_group,
+SELECT e.exp_group,
 
-      COUNT(DISTINCT u.user\_id) AS users,
+      COUNT(DISTINCT u.user_id) AS users,
 
-      COUNT(DISTINCT l.user\_id) AS d1\_users,
+      COUNT(DISTINCT l.user_id) AS d1_users,
 
-      ROUND(COUNT(DISTINCT l.user\_id)/COUNT(DISTINCT u.user\_id), 2) AS d1\_rate
+      ROUND(COUNT(DISTINCT l.user_id)/COUNT(DISTINCT u.user_id), 2) AS d1_rate
 
-FROM exp\_assignment e
+FROM exp_assignment e
 
-JOIN users u ON e.user\_id = u.user\_id
+JOIN users u ON e.user_id = u.user_id
 
-LEFT JOIN login\_logs l ON u.user\_id = l.user\_id 
+LEFT JOIN login_logs l ON u.user_id = l.user_id 
 
-   AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
+   AND l.login_date = DATE_ADD(u.first_login_date, INTERVAL 1 DAY)
 
-WHERE u.first\_login\_date BETWEEN '2025-06-15' AND '2025-06-21'
+WHERE u.first_login_date BETWEEN '2025-06-15' AND '2025-06-21'
 
-GROUP BY e.exp\_group;
+GROUP BY e.exp_group;
 ```
 
 ![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/7.png)
@@ -338,7 +338,7 @@ GROUP BY e.exp\_group;
 初步结果：简化新手引导能显著提升新用户次日留存，建议全量上线。
 
 
-\## 策略落地与迭代
+## 策略落地与迭代
 
 * 渠道侧：降低应用商店低质广告发送频率，重新定向目标人群，同时投放素材改为轻量引导体验。
 
@@ -349,7 +349,7 @@ GROUP BY e.exp\_group;
 * 长期机制：建立分渠道留存率预警看板，当任一渠道次日留存连续数天低于基线20%时自动告警。
 
 
-\## 如何复现
+## 如何复现
 
 * 为及时修改数据并构建实验，所以无法复现。复现需要在建表时SET @seed = 0; 
 
@@ -360,21 +360,21 @@ GROUP BY e.exp\_group;
 SET @seed = 0; --固定随机数
 
 ```sql
-INSERT INTO users (user\_id, first\_login\_date, channel)
+INSERT INTO users (user_id, first_login_date, channel)
 
 SELECT 
 
-   n AS user\_id,
+   n AS user_id,
 
-   DATE\_ADD('2025-06-01', INTERVAL FLOOR((@seed := RAND(@seed + 0)) \* 30) DAY) AS first\_login\_date,
+   DATE_ADD('2025-06-01', INTERVAL FLOOR((@seed := RAND(@seed + 0)) * 30) DAY) AS first_login_date,
 
    CASE 
 
-       WHEN (@seed := RAND(@seed + 0)) \* 100 < 40 THEN '应用商店'
+       WHEN (@seed := RAND(@seed + 0)) * 100 < 40 THEN '应用商店'
 
-       WHEN (@seed := RAND(@seed + 0)) \* 100 < 70 THEN '信息流广告'
+       WHEN (@seed := RAND(@seed + 0)) * 100 < 70 THEN '信息流广告'
 
-       WHEN (@seed := RAND(@seed + 0)) \* 100 < 90 THEN '抖音'
+       WHEN (@seed := RAND(@seed + 0)) * 100 < 90 THEN '抖音'
 
        ELSE '其他'
 

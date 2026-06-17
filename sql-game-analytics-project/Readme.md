@@ -30,13 +30,9 @@ game-retention-analysis/
 
 ├── images/                    # 截图、图表
 
-│
+├── docs/
 
-│
-
-└── docs/
-
-&#x20;   └── analysis\_report.md     # 详细分析报告
+└──  └── analysis\_report.md     # 详细分析报告
 
 
 

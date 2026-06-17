@@ -62,6 +62,7 @@
 
 \-- 每日留存率趋势查询
 
+```sql
 SELECT u.first\_login\_date,
 
 &#x20;      COUNT(DISTINCT u.user\_id) AS new\_users,
@@ -77,8 +78,8 @@ LEFT JOIN login\_logs l ON u.user\_id = l.user\_id
 &#x20;   AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
 
 GROUP BY u.first\_login\_date;
-
-
+```
+![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/1.png)
 
 发现 6月28日 留存率从 52% 跌至 37%。
 

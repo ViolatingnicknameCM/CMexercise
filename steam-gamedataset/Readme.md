@@ -17,11 +17,11 @@
 - │ └── steam_heatmap_interactive.html  #②游戏类型演变分析中的热力图
 - │ 
 - ├── ①steam28 年增长曲线 /              #steam28年增长曲线的juypter主代码
-- │ ├──Readme.MD
+- │ ├──Readme.MD                        #分析结果
 - │ └──Steam游戏数量增长曲线可视化.ipynb
 - │ 
 - ├── ②游戏类型演变分析 /                #游戏类型演变分析的juypter主代码
-- │ ├──Readme.MD
+- │ ├──Readme.MD                        #项目介绍(技术栈等，不含分析结果)   待更新
 - │ └──Steam游戏类型演变分析.ipynb
 - │ 
 - ├── Readme.txt                        

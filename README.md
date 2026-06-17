@@ -13,3 +13,7 @@
 ## steam-gamedataset
 
 练习数据分析与可视化
+
+## sql-game-analytics-project
+
+练习sql与数据分析业务流程

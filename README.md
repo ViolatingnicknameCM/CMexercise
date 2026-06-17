@@ -12,4 +12,4 @@
 
 ## steam-gamedataset
 
-练习数据分析
+练习数据分析与可视化

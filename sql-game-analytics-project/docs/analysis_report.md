@@ -65,17 +65,17 @@
 ```sql
 SELECT u.first\_login\_date,
 
-&#x20;      COUNT(DISTINCT u.user\_id) AS new\_users,
+      COUNT(DISTINCT u.user\_id) AS new\_users,
 
-&#x20;      COUNT(DISTINCT l.user\_id) AS d1\_users,
+      COUNT(DISTINCT l.user\_id) AS d1\_users,
 
-&#x20;      ROUND(COUNT(DISTINCT l.user\_id)/COUNT(DISTINCT u.user\_id), 2) AS d1\_rate
+      ROUND(COUNT(DISTINCT l.user\_id)/COUNT(DISTINCT u.user\_id), 2) AS d1\_rate
 
 FROM users u
 
 LEFT JOIN login\_logs l ON u.user\_id = l.user\_id 
 
-&#x20;   AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
+   AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
 
 GROUP BY u.first\_login\_date;
 ```
@@ -87,40 +87,40 @@ GROUP BY u.first\_login\_date;
 
 \### 按渠道拆解新增
 
+```sql
 SELECT channel,
 
-&#x20;      COUNT(DISTINCT user\_id) AS new\_users,
+      COUNT(DISTINCT user\_id) AS new\_users,
 
-&#x20;      ROUND(SUM(CASE WHEN is\_d1=1 THEN 1 ELSE 0 END) / COUNT(\*), 2) AS d1\_rate
+      ROUND(SUM(CASE WHEN is\_d1=1 THEN 1 ELSE 0 END) / COUNT(\*), 2) AS d1\_rate
 
 FROM (
 
-&#x20;   SELECT u.user\_id, u.channel,
+   SELECT u.user\_id, u.channel,
 
-&#x20;          MAX(CASE WHEN l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY) THEN 1 ELSE 0 END) AS is\_d1
+          MAX(CASE WHEN l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY) THEN 1 ELSE 0 END) AS is\_d1
 
-&#x20;   FROM users u
+   FROM users u
 
-&#x20;   LEFT JOIN login\_logs l ON u.user\_id = l.user\_id
+   LEFT JOIN login\_logs l ON u.user\_id = l.user\_id
 
-&#x20;   WHERE u.first\_login\_date = '2025-06-28'
+   WHERE u.first\_login\_date = '2025-06-28'
 
-&#x20;   GROUP BY u.user\_id, u.channel
+   GROUP BY u.user\_id, u.channel
 
 ) t
 
 GROUP BY channel;
+```
 
+![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/2.png)
 
-
-发现6月28日应用商店留存率仅34%，抖音留存率稳定在20%周围。
-
+发现6月28日应用商店留存率仅34%;抖音留存率稳定在20%周围，为17%
 
 
 \### 对新手引导步骤进行漏斗计算
 
-
-
+```sql
 SELECT step\_id, COUNT(DISTINCT user\_id) AS users
 
 FROM tutorial\_progress
@@ -128,28 +128,29 @@ FROM tutorial\_progress
 WHERE user\_id IN (SELECT user\_id FROM users WHERE first\_login\_date='2025-06-28')
 
 GROUP BY step\_id;
+```
+
+![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/3.png)
+
+发现漏斗回升，注意到这些步骤为并行步骤，应该为各步骤独立完成率的对比表。
 
 
-
-发现漏斗回升，经验证发现这些步骤为并行步骤，应该为各步骤独立完成率的对比表。
-
-
-
+```sql
 SELECT 
 
-&#x20;   s.step\_id,
+   s.step\_id,
 
-&#x20;   COUNT(DISTINCT t.user\_id) AS completed\_users,
+   COUNT(DISTINCT t.user\_id) AS completed\_users,
 
-&#x20;   ROUND(COUNT(DISTINCT t.user\_id) / 
+   ROUND(COUNT(DISTINCT t.user\_id) / 
 
-&#x20;         (SELECT COUNT(\*) FROM users WHERE first\_login\_date = '2025-06-28'), 2) AS completion\_rate
+         (SELECT COUNT(\*) FROM users WHERE first\_login\_date = '2025-06-28'), 2) AS completion\_rate
 
 FROM (
 
-&#x20;   SELECT 1 AS step\_id UNION SELECT 2 UNION SELECT 3 
+   SELECT 1 AS step\_id UNION SELECT 2 UNION SELECT 3 
 
-&#x20;   UNION SELECT 4 UNION SELECT 5
+   UNION SELECT 4 UNION SELECT 5
 
 ) s
 
@@ -162,8 +163,9 @@ LEFT JOIN tutorial\_progress t
 GROUP BY s.step\_id
 
 ORDER BY s.step\_id;
+```
 
-
+![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/4.png)
 
 注意到
 
@@ -182,20 +184,20 @@ ORDER BY s.step\_id;
 \### 首日行为深度验证
 
 
-
+```sql
 SELECT u.channel,
 
-&#x20;      CASE 
+      CASE 
 
-&#x20;          WHEN l.session\_duration < 60 THEN '秒退(<3min)'
+          WHEN l.session\_duration < 60 THEN '秒退(<3min)'
 
-&#x20;          WHEN l.session\_duration BETWEEN 60 AND 300 THEN '浅玩(3-30min)'
+          WHEN l.session\_duration BETWEEN 60 AND 300 THEN '浅玩(3-30min)'
 
-&#x20;          ELSE '深度(>30min)'
+          ELSE '深度(>30min)'
 
-&#x20;      END AS play\_group,
+      END AS play\_group,
 
-&#x20;      COUNT(\*) AS cnt
+      COUNT(\*) AS cnt
 
 FROM users u
 
@@ -204,8 +206,9 @@ JOIN login\_logs l ON u.user\_id = l.user\_id AND l.login\_date = u.first\_login
 WHERE u.first\_login\_date = '2025-06-28'
 
 GROUP BY u.channel, play\_group;
+```
 
-
+![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/5.png)
 
 分析发现应用商店渠道投放素材吸引了非目标用户，虽然大部分玩家进行游玩，但是次日留存率极低，仅因为新游戏热度进行体验。
 
@@ -238,14 +241,14 @@ GROUP BY u.channel, play\_group;
 
 
 通过
-
+```sql
 SELECT e.exp\_group,
 
-&#x20;      COUNT(DISTINCT u.user\_id) AS users,
+      COUNT(DISTINCT u.user\_id) AS users,
 
-&#x20;      COUNT(DISTINCT l.user\_id) AS d1\_users,
+      COUNT(DISTINCT l.user\_id) AS d1\_users,
 
-&#x20;      ROUND(COUNT(DISTINCT l.user\_id)/COUNT(DISTINCT u.user\_id), 2) AS d1\_rate
+      ROUND(COUNT(DISTINCT l.user\_id)/COUNT(DISTINCT u.user\_id), 2) AS d1\_rate
 
 FROM exp\_assignment e
 
@@ -258,12 +261,9 @@ LEFT JOIN login\_logs l ON u.user\_id = l.user\_id
 WHERE u.first\_login\_date BETWEEN '2025-06-15' AND '2025-06-21'
 
 GROUP BY e.exp\_group;
+```
 
-进行验证
-
-
-
-
+![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/6.png)
 
 发现两组概率几乎相同，且A：B的人数约为6:4
 
@@ -273,15 +273,16 @@ GROUP BY e.exp\_group;
 
 \-- 补充 B组 次日留存
 
+```sql
 INSERT INTO login\_logs (user\_id, login\_date, session\_duration)
 
 SELECT 
 
-&#x20;   u.user\_id,
+   u.user\_id,
 
-&#x20;   DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY),
+   DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY),
 
-&#x20;   FLOOR(200 + RAND(u.user\_id \* 31) \* 800)
+   FLOOR(200 + RAND(u.user\_id \* 31) \* 800)
 
 FROM users u
 
@@ -289,35 +290,31 @@ JOIN exp\_assignment e ON u.user\_id = e.user\_id
 
 WHERE e.exp\_group = 'B'
 
-&#x20; AND u.first\_login\_date BETWEEN '2025-06-15' AND '2025-06-21'
+ AND u.first\_login\_date BETWEEN '2025-06-15' AND '2025-06-21'
 
-&#x20; AND NOT EXISTS (
+ AND NOT EXISTS (
 
-&#x20;     SELECT 1 FROM login\_logs l
+     SELECT 1 FROM login\_logs l
 
-&#x20;     WHERE l.user\_id = u.user\_id 
+     WHERE l.user\_id = u.user\_id 
 
-&#x20;       AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
+       AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
 
-&#x20; )
+ )
 
-&#x20; AND RAND(u.user\_id \* 31) < 0.12;  按概率补充
-
-
-
-
-
-
+ AND RAND(u.user\_id \* 31) < 0.12;  按概率补充
+```
 
 \-- 评估结果
 
+```sql
 SELECT e.exp\_group,
 
-&#x20;      COUNT(DISTINCT u.user\_id) AS users,
+      COUNT(DISTINCT u.user\_id) AS users,
 
-&#x20;      COUNT(DISTINCT l.user\_id) AS d1\_users,
+      COUNT(DISTINCT l.user\_id) AS d1\_users,
 
-&#x20;      ROUND(COUNT(DISTINCT l.user\_id)/COUNT(DISTINCT u.user\_id), 2) AS d1\_rate
+      ROUND(COUNT(DISTINCT l.user\_id)/COUNT(DISTINCT u.user\_id), 2) AS d1\_rate
 
 FROM exp\_assignment e
 
@@ -325,13 +322,14 @@ JOIN users u ON e.user\_id = u.user\_id
 
 LEFT JOIN login\_logs l ON u.user\_id = l.user\_id 
 
-&#x20;   AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
+   AND l.login\_date = DATE\_ADD(u.first\_login\_date, INTERVAL 1 DAY)
 
 WHERE u.first\_login\_date BETWEEN '2025-06-15' AND '2025-06-21'
 
 GROUP BY e.exp\_group;
+```
 
-
+![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/sql-game-analytics-project/images/7.png)
 
 发现B组提升了4％，且结果显著
 
@@ -340,25 +338,15 @@ GROUP BY e.exp\_group;
 初步结果：简化新手引导能显著提升新用户次日留存，建议全量上线。
 
 
-
 \## 策略落地与迭代
-
-
 
 * 渠道侧：降低应用商店低质广告发送频率，重新定向目标人群，同时投放素材改为轻量引导体验。
 
-
-
 * 产品侧：全量上线简化版新手引导（假设AB实验显著提升）。
-
-
 
 * 运营侧：对流失用户发送“召回礼包”短信，用高价值奖励尝试挽回。
 
-
-
 * 长期机制：建立分渠道留存率预警看板，当任一渠道次日留存连续数天低于基线20%时自动告警。
-
 
 
 \## 如何复现
@@ -371,31 +359,31 @@ GROUP BY e.exp\_group;
 
 SET @seed = 0; --固定随机数
 
+```sql
 INSERT INTO users (user\_id, first\_login\_date, channel)
 
 SELECT 
 
-&#x20;   n AS user\_id,
+   n AS user\_id,
 
-&#x20;   DATE\_ADD('2025-06-01', INTERVAL FLOOR((@seed := RAND(@seed + 0)) \* 30) DAY) AS first\_login\_date,
+   DATE\_ADD('2025-06-01', INTERVAL FLOOR((@seed := RAND(@seed + 0)) \* 30) DAY) AS first\_login\_date,
 
-&#x20;   CASE 
+   CASE 
 
-&#x20;       WHEN (@seed := RAND(@seed + 0)) \* 100 < 40 THEN '应用商店'
+       WHEN (@seed := RAND(@seed + 0)) \* 100 < 40 THEN '应用商店'
 
-&#x20;       WHEN (@seed := RAND(@seed + 0)) \* 100 < 70 THEN '信息流广告'
+       WHEN (@seed := RAND(@seed + 0)) \* 100 < 70 THEN '信息流广告'
 
-&#x20;       WHEN (@seed := RAND(@seed + 0)) \* 100 < 90 THEN '抖音'
+       WHEN (@seed := RAND(@seed + 0)) \* 100 < 90 THEN '抖音'
 
-&#x20;       ELSE '其他'
+       ELSE '其他'
 
-&#x20;   END AS channel
+   END AS channel
 
 FROM numbers
 
 WHERE n <= 5000;
-
-
+```
 
 * 在进行AB实验时，依次构建数个不同日期的数据表并进行研究。
 

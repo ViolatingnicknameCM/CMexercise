@@ -34,7 +34,7 @@ game-retention-analysis/
 
 ├── docs/
 
-└── ─── analysis\_report.md     # 详细分析报告
+└── └── analysis\_report.md     # 详细分析报告
 
 
 

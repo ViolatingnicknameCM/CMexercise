@@ -43,7 +43,7 @@ Greenlight是一款“征集社区帮助,挑选新游戏在Steam上发布的系�
 ## 运行结果：
 ![运行效果](https://github.com/ViolatingnicknameCM/CMexercise/blob/main/steam-gamedataset/png/steam_growth.png)
 
--交互图演示，点击路径即可查看(https://violatingnicknamecm.github.io/CMexercise/steam-gamedataset/png/Plotly_steam_growth.html)
+-交互图演示，点击路径即可查看(https://violatingnicknamecm.github.io/CMexercise/docs/Plotly_steam_growth.html)
 
   # 数据来源
 

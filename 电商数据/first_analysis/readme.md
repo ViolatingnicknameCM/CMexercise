@@ -20,7 +20,22 @@
 
 Python：pandas、matplotlib
 
+### 代码结构：
 
+定义路径
+定义函数load_data()        → 数据加载+清洗，返回一个干净的 df
+定义函数print_summary()    → 输出汇总指标
+定义函数plot_sales_trend() → 图1月度销售额趋势
+定义函数plot_quarterly_gmv() → 图2季度GMV
+定义函数plot_aov_trend()   → 图3客单价趋势
+定义函数plot_category_ranking() → 图4品类销售额排名
+main()             → 按顺序调度
+
+学习使用if __name__ == '__main__'，保证不自动执行
+
+学习将每个分析独立成对应的函数，保证各模块代码可单独分块调试、不依赖全局变量，减少扩充难度
+
+文件路径取自环境变量，而环境变量绑定了当前Python脚本文件的路径+dataset文件夹，由于版权相关故未提交到github中，需要自行在kaggle中下载（数据来源在最底部）
 
 ## 三、简要分析步骤
 
